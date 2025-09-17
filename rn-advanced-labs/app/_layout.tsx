@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import '../suppress-warnings';
 
 export default function RootLayout() {
   return (

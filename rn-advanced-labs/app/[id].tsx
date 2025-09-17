@@ -1,6 +1,7 @@
 import { useLocalSearchParams, Stack, Link } from 'expo-router';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
+import { shadows } from '../utils/shadows';
 
 // Simulation de données
 const getItemData = (id: string) => {
@@ -80,7 +81,7 @@ export default function DetailScreen() {
         <View style={styles.center}>
           <Text style={styles.errorTitle}>Paramètre manquant</Text>
           <Text style={styles.errorText}>L'ID du produit est requis pour afficher les détails</Text>
-          <Link href="/(main)/home" asChild>
+          <Link href={"/(main)/home" as any} asChild>
             <TouchableOpacity style={styles.backButton}>
               <Text style={styles.backButtonText}>Retour à l'accueil</Text>
             </TouchableOpacity>
@@ -101,7 +102,7 @@ export default function DetailScreen() {
             Ce produit n'existe pas dans notre base de données.
             Essayez avec les IDs: 1, 42, ou 123.
           </Text>
-          <Link href="/(main)/home" asChild>
+          <Link href={"/(main)/home" as any} asChild>
             <TouchableOpacity style={styles.backButton}>
               <Text style={styles.backButtonText}>Retour à l'accueil</Text>
             </TouchableOpacity>
@@ -158,7 +159,7 @@ export default function DetailScreen() {
             Bouton retour: Automatique
           </Text>
           
-          <Link href={`/${parseInt(id) + 1}`} asChild>
+          <Link href={`/${parseInt(id) + 1}` as any} asChild>
             <TouchableOpacity style={styles.navButton}>
               <Text style={styles.navButtonText}>
                 Voir produit suivant (ID: {parseInt(id) + 1})
@@ -166,7 +167,7 @@ export default function DetailScreen() {
             </TouchableOpacity>
           </Link>
           
-          <Link href="/(main)/home" asChild>
+          <Link href={"/(main)/home" as any} asChild>
             <TouchableOpacity style={[styles.navButton, styles.homeButton]}>
               <Text style={styles.navButtonText}>Retour à l'accueil</Text>
             </TouchableOpacity>
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     marginBottom: 16,
-    elevation: 2,
+    ...shadows.small,
   },
   sectionTitle: {
     fontSize: 18,

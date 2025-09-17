@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useEffect } from 'react';
+import { shadows } from '../../utils/shadows';
 
 export default function HomeScreen() {
   useEffect(() => {
@@ -28,11 +29,84 @@ export default function HomeScreen() {
       <ScrollView style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>RN Advanced Labs</Text>
-          <Text style={styles.subtitle}>TP2 - Navigation & Deep Linking</Text>
+          <Text style={styles.subtitle}>TP2 - Navigation & Deep Linking | TP3 - Forms</Text>
+        </View>
+
+        {/* TP3 Forms Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>📝 TP3 - Gestion des formulaires</Text>
+          <Text style={styles.description}>
+            Comparaison entre Formik+Yup et React Hook Form+Zod
+          </Text>
+          
+          <View style={styles.formsContainer}>
+            <Link href="/TP3-forms/formik" asChild>
+              <TouchableOpacity 
+                style={[styles.formCard, styles.formikCard]}
+                onPress={() => console.log('🔗 [HomeScreen] Navigation vers Formik')}
+              >
+                <Text style={styles.formCardTitle}>Formik + Yup</Text>
+                <Text style={styles.formCardDescription}>
+                  Formulaire d'inscription avec Formik et validation Yup
+                </Text>
+                <Text style={styles.formCardFeatures}>
+                  ✓ Gestion des erreurs{'\n'}
+                  ✓ Validation en temps réel{'\n'}
+                  ✓ Focus automatique{'\n'}
+                  ✓ Feedback haptique
+                </Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/TP3-forms/rhf" asChild>
+              <TouchableOpacity 
+                style={[styles.formCard, styles.rhfCard]}
+                onPress={() => console.log('🔗 [HomeScreen] Navigation vers RHF')}
+              >
+                <Text style={styles.formCardTitle}>React Hook Form + Zod</Text>
+                <Text style={styles.formCardDescription}>
+                  Formulaire d'inscription avec RHF et validation Zod
+                </Text>
+                <Text style={styles.formCardFeatures}>
+                  ✓ Performance optimisée{'\n'}
+                  ✓ TypeScript natif{'\n'}
+                  ✓ Moins de re-rendus{'\n'}
+                  ✓ API moderne
+                </Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
+        </View>
+
+        {/* TP4 Robots Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>🤖 TP4 - Gestion d'état avec Zustand</Text>
+          <Text style={styles.description}>
+            CRUD complet de robots avec Zustand et persistance locale
+          </Text>
+          
+          <Link href="/tp4-robots" asChild>
+            <TouchableOpacity 
+              style={[styles.formCard, styles.zustandCard]}
+              onPress={() => console.log('🔗 [HomeScreen] Navigation vers TP4 Robots')}
+            >
+              <Text style={styles.formCardTitle}>🤖 Robots Manager</Text>
+              <Text style={styles.formCardDescription}>
+                Application CRUD complète avec Zustand, validation Zod et persistance AsyncStorage
+              </Text>
+              <Text style={styles.formCardFeatures}>
+                ✓ Store global Zustand{'\n'}
+                ✓ CRUD complet (Create, Read, Update, Delete){'\n'}
+                ✓ Validation robuste avec Zod{'\n'}
+                ✓ Persistance automatique{'\n'}
+                ✓ Interface mobile optimisée
+              </Text>
+            </TouchableOpacity>
+          </Link>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>🚀 Fonctionnalités</Text>
+          <Text style={styles.sectionTitle}>🚀 Fonctionnalités TP2</Text>
           <Text style={styles.description}>
             Cette application démontre la navigation avec Expo Router, le passage de paramètres, 
             la persistance d'état et le deep linking.
@@ -48,7 +122,7 @@ export default function HomeScreen() {
               return (
                 <Link
                   key={item.id}
-                  href={`/detail/${item.id}` as const}
+                  href={`/detail/${item.id}` as any}
                   asChild
                   onPress={() => handleLinkPress(item.id)}
                 >
@@ -87,6 +161,39 @@ export default function HomeScreen() {
             L'état de navigation est automatiquement persisté. 
             Essayez de naviguer puis fermer/rouvrir l'app !
           </Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>📝 TP3 - Formulaires Avancés</Text>
+          <Text style={styles.description}>
+            Comparez deux approches modernes pour la gestion des formulaires en React Native :
+          </Text>
+          
+          <View style={styles.formsContainer}>
+            <Link href="/TP3-forms/formik" asChild>
+              <TouchableOpacity style={[styles.formCard, styles.formikCard]}>
+                <Text style={styles.formCardTitle}>🟣 Formik + Yup</Text>
+                <Text style={styles.formCardDescription}>
+                  Approche traditionnelle et éprouvée pour la gestion des formulaires
+                </Text>
+                <Text style={styles.formCardFeatures}>
+                  • API intuitive • Écosystème riche • Documentation complète
+                </Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/TP3-forms/rhf" asChild>
+              <TouchableOpacity style={[styles.formCard, styles.rhfCard]}>
+                <Text style={styles.formCardTitle}>🟢 React Hook Form + Zod</Text>
+                <Text style={styles.formCardDescription}>
+                  Approche moderne et performante avec validation TypeScript
+                </Text>
+                <Text style={styles.formCardFeatures}>
+                  • Performance optimisée • TypeScript natif • Bundle size réduit
+                </Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
         </View>
       </ScrollView>
     );
@@ -139,11 +246,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    ...shadows.medium,
   },
   sectionTitle: {
     fontSize: 18,
@@ -203,5 +306,42 @@ const styles = StyleSheet.create({
     color: '#9ca3af',
     textAlign: 'center',
     fontStyle: 'italic',
+  },
+  formsContainer: {
+    gap: 16,
+  },
+  formCard: {
+    backgroundColor: '#ffffff',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 16,
+    borderWidth: 2,
+    ...shadows.medium,
+  },
+  formikCard: {
+    borderColor: '#8B5CF6',
+  },
+  rhfCard: {
+    borderColor: '#10B981',
+  },
+  zustandCard: {
+    borderColor: '#F59E0B',
+  },
+  formCardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: '#1F2937',
+  },
+  formCardDescription: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 12,
+    lineHeight: 20,
+  },
+  formCardFeatures: {
+    fontSize: 12,
+    color: '#4B5563',
+    lineHeight: 16,
   },
 });
