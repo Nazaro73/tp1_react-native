@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Stack } from 'expo-router';
 
-// Composant ProfileCard intégré
+// Composant ProfileCard
 const ProfileCard: React.FC<{
   imageUrl: string;
   name: string;
@@ -42,7 +43,7 @@ const ProfileCard: React.FC<{
 };
 
 // Écran principal TP1
-export default function HomeScreen() {
+export default function TP1ProfileCardScreen() {
   const [followersCount, setFollowersCount] = useState(1234);
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -69,6 +70,22 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen 
+        options={{ 
+          title: 'TP1 - Profile Card',
+          headerStyle: { backgroundColor: '#3b82f6' },
+          headerTintColor: 'white',
+          headerTitleStyle: { fontWeight: 'bold' },
+        }} 
+      />
+      
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>TP1 - Profile Card Interactive</Text>
+        <Text style={styles.headerSubtitle}>
+          Démonstration des hooks useState et useEffect
+        </Text>
+      </View>
+      
       <ProfileCard
         imageUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
         name="Alex Johnson"
@@ -77,6 +94,14 @@ export default function HomeScreen() {
         isFollowing={isFollowing}
         onFollowPress={handleFollowPress}
       />
+      
+      <View style={styles.info}>
+        <Text style={styles.infoTitle}>🎯 Fonctionnalités démontrées</Text>
+        <Text style={styles.infoItem}>• useState pour l'état du bouton et du compteur</Text>
+        <Text style={styles.infoItem}>• useEffect avec timer et cleanup</Text>
+        <Text style={styles.infoItem}>• Auto-increment des followers (5s)</Text>
+        <Text style={styles.infoItem}>• Design moderne avec animations</Text>
+      </View>
     </View>
   );
 }
@@ -85,9 +110,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f8fafc',
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  header: {
     padding: 20,
+    paddingTop: 40,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1f2937',
+    marginBottom: 4,
+  },
+  headerSubtitle: {
+    fontSize: 14,
+    color: '#6b7280',
   },
   card: {
     backgroundColor: 'white',
@@ -103,7 +143,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     margin: 20,
-    minWidth: 280,
+    marginTop: 40,
   },
   profileImage: {
     width: 120,
@@ -156,5 +196,28 @@ const styles = StyleSheet.create({
   },
   followingButtonText: {
     color: '#6b7280',
+  },
+  info: {
+    margin: 20,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  infoTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1f2937',
+    marginBottom: 12,
+  },
+  infoItem: {
+    fontSize: 14,
+    color: '#6b7280',
+    marginBottom: 6,
+    paddingLeft: 8,
   },
 });
