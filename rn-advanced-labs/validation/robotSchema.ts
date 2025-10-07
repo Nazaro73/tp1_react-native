@@ -11,13 +11,16 @@ export const RobotType = {
 
 export type RobotTypeValue = typeof RobotType[keyof typeof RobotType];
 
-// Interface Robot
+// Interface Robot (avec timestamps pour TP5)
 export interface Robot {
   id: string;
   name: string;
   label: string;
   year: number;
   type: RobotTypeValue;
+  created_at?: number;    // TP5: timestamp Unix
+  updated_at?: number;    // TP5: timestamp Unix
+  archived?: boolean;     // TP5: soft delete
 }
 
 // Input pour création/édition (sans id)
