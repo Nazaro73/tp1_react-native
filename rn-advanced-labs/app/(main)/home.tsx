@@ -105,6 +105,33 @@ export default function HomeScreen() {
           </Link>
         </View>
 
+        {/* TP4-B Redux Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>🔄 TP4-B - Gestion d'état avec Redux Toolkit</Text>
+          <Text style={styles.description}>
+            Même CRUD avec Redux Toolkit pour comparer les approches de gestion d'état
+          </Text>
+          
+          <Link href="/tp4b-robots-rtk" asChild>
+            <TouchableOpacity 
+              style={[styles.formCard, styles.reduxCard]}
+              onPress={() => console.log('🔗 [HomeScreen] Navigation vers TP4-B Redux')}
+            >
+              <Text style={styles.formCardTitle}>⚛️ Redux Robots Manager</Text>
+              <Text style={styles.formCardDescription}>
+                Application CRUD avec Redux Toolkit, thunks asynchrones et persistance redux-persist
+              </Text>
+              <Text style={styles.formCardFeatures}>
+                ✓ Store Redux Toolkit{'\n'}
+                ✓ Actions synchrones et asynchrones{'\n'}
+                ✓ Sélecteurs mémoïsés{'\n'}
+                ✓ Redux Persist intégré{'\n'}
+                ✓ TypeScript strict
+              </Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>🚀 Fonctionnalités TP2</Text>
           <Text style={styles.description}>
@@ -326,6 +353,9 @@ const styles = StyleSheet.create({
   },
   zustandCard: {
     borderColor: '#F59E0B',
+  },
+  reduxCard: {
+    borderColor: '#10B981', // Vert pour Redux (TP4B)
   },
   formCardTitle: {
     fontSize: 18,
